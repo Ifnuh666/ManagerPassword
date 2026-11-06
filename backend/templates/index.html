@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="/static/image/icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Alien+Block&family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Добро пожаловать!</title>
+</head>
+<body>
+    <header>
+        <div class="header_content">
+            <div class="left_elem">
+                <div class="header_left">
+                    <div class="icon_block">
+                        <img src="/static/image/icon.png" alt="Иконка менеджера паролей">
+                    </div>
+                    <h1>Менеджер паролей</h1>
+                </div>
+            </div>
+            <div class="right_elem">
+                <div class="navigate_menu">
+                    <a href="#">Главная</a>
+                    <div class="palka1"></div>
+                    <a href="/account">Личный кабинет</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>Ваши пароли</h2>
+        <div class="block_password">
+            <a href="/add_password" type="submit" id="add_password">Добавить пароль</a>
+            <div class="select_password">
+                <select id="password" name="password_choice">
+                    <option value="new">Новые</option>
+                    <option value="old-ones" selected>Старые</option>
+                </select>
+            </div>
+        </div>
+        <div class="list-password" id="vault-list">
+
+        </div>
+    </main>
+    <script src="/static/js/index.js"></script>
+    <div id="editModal" class="modalWindow" style="display: none;">
+        <div class="modelContent">
+            <h3>Редактировать запись</h3>
+            <form id="editForm">
+                <input type="hidden" id="editItemId">
+                
+                <div class="form-group">
+                    <label>Название сайта:</label>
+                    <input type="text" id="editSiteName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Логин:</label>
+                    <input type="text" id="editLogin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Пароль:</label>
+                    <input type="text" id="editPassword" required>
+                </div>
+                
+                <div class="modal-buttons">
+                    <button type="button" id="cancelEdit" style="background: #ccc; color: #333;">Отмена</button>
+                    <button type="submit" id="saveEdit" style="background: #4CAF50; color: white;">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="delModal" class="modalWindow" style="display: none;">
+        <div class="modelContent">
+            <h3>Подтвердите удаление</h3>
+            <form id="delForm">
+                <input type="hidden" id="delItemId">
+                
+                <div class="form-group">
+                    <label>Название сайта:</label>
+                    <input type="text" id="delSiteName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Логин:</label>
+                    <input type="text" id="delLogin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Пароль:</label>
+                    <input type="text" id="delPassword" required>
+                </div>
+                
+                <div class="modal-buttons">
+                    <button type="button" id="cancelDelete" style="background: #ccc; color: #333;">Отмена</button>
+                    <button type="submit" id="confirmDelete" style="background: #f44336; color: white;">Удалить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="addPasswordModal" class="modalWindow" style="display: none;">
+        <div class="modelContent">
+            <h3>Добавить новый пароль</h3>
+            <form id="addForm">
+                <div class="form-group">
+                    <label>Название сайта:</label>
+                    <input type="text" id="editSiteName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Логин:</label>
+                    <input type="text" id="editLogin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Пароль:</label>
+                    <input type="text" id="editPassword" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" id="cancelWindow" style="background: #ccc; color: #333;">Отмена</button>
+                    <button type="submit" id="saveWindow" style="background: #4CAF50; color: white;">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

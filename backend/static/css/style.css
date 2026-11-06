@@ -1,0 +1,468 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Шрифты */
+
+.puritan-regular {
+  font-family: "Puritan", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.puritan-bold {
+  font-family: "Puritan", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.puritan-regular-italic {
+  font-family: "Puritan", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.puritan-bold-italic {
+  font-family: "Puritan", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* =========================================
+   2. ХЕДЕР
+   ========================================= */
+header {
+    background: #ffffff;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header_left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon_block img {
+    width: 45px;
+    height: 45px;
+    display: block;
+}
+
+header h1 {
+    font-family: "Puritan", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #0f766e;
+}
+
+.navigate_menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: "Puritan", sans-serif;
+}
+
+.navigate_menu a {
+    text-decoration: none;
+    color: #475569;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.navigate_menu a:hover {
+    color: #0d9488;
+}
+
+.palka1 {
+    width: 1px;
+    height: 24px;
+    background: #cbd5e1;
+}
+
+/* =========================================
+   3. ОСНОВНОЙ КОНТЕНТ (MAIN)
+   ========================================= */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+main h2 {
+    font-family: "Puritan", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #1e293b;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.block_password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+#add_password {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+    transition: all 0.2s ease;
+    font-family: "Puritan", sans-serif;
+}
+
+#add_password:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(16, 185, 129, 0.4);
+}
+
+#password {
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: "Roboto", sans-serif;
+}
+
+#password:hover {
+    border-color: #94a3b8;
+}
+
+#password:focus {
+    outline: none;
+    border-color: #0d9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+/* =========================================
+   4. СПИСОК ПАРОЛЕЙ И КАРТОЧКИ
+   ========================================= */
+.list-password {
+    width: 100%;
+    min-height: 200px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.password-card {
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    border-left: 4px solid #0d9488;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.password-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+}
+
+.site-name {
+    width: 100%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Чтобы на мобильных переносилось корректно */
+    gap: 10px;
+}
+
+.site-name p {
+    font-family: "Puritan", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.card-date {
+    font-size: 13px;
+    color: #94a3b8; /* Приглушенный серо-голубой цвет */
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    white-space: nowrap; /* Запрещаем перенос даты на новую строку */
+}
+
+.line {
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #0d9488, #5eead4);
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+.block-login, .block-password {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.block-login p, .block-password p {
+    font-size: 15px;
+    color: #475569;
+    flex: 1;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.block-login p strong, .block-password p strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.block-password p code {
+    background: #f1f5f9;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: "Roboto", monospace; /* Используем ваш Roboto + monospace для паролей */
+    font-size: 14px;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
+   5. КНОПКИ ДЕЙСТВИЙ В КАРТОЧКЕ
+   ========================================= */
+.copy-btn, .edit-btn, .delete-btn {
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-family: "Roboto", sans-serif;
+}
+
+.copy-btn {
+    background: #f1f5f9;
+    color: #475569;
+    border-color: #e2e8f0;
+}
+.copy-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.edit-btn {
+    background: #ccfbf1;
+    color: #0f766e;
+    border-color: #99f6e4;
+}
+.edit-btn:hover {
+    background: #99f6e4;
+    color: #0f766e;
+}
+
+.delete-btn {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+.delete-btn:hover {
+    background: #fecaca;
+    color: #991b1b;
+}
+
+/* Кнопка Показать/Скрыть пароль (Глазик) */
+.toggle-password-btn {
+    font-size: 18px; /* Размер эмодзи */
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px; /* Отступ до кнопки "Копировать" */
+    line-height: 1;
+}
+
+.toggle-password-btn:hover {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    transform: scale(1.1); /* Легкое увеличение при наведении */
+}
+
+/* =========================================
+   6. МОДАЛЬНЫЕ ОКНА (Универсальные)
+   ========================================= */
+.modalWindow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.modalWindow[style*="display: flex"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modelContent {
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    width: 420px;
+    max-width: 90%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+}
+
+.modalWindow[style*="display: flex"] .modelContent {
+    transform: scale(1);
+}
+
+.modelContent h3 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #0f172a;
+    font-size: 22px;
+    font-family: "Puritan", sans-serif;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #475569;
+    font-size: 14px;
+    font-family: "Puritan", sans-serif;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #1e293b;
+    transition: all 0.2s ease;
+    font-family: "Roboto", sans-serif;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0d9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.form-group input[readonly] {
+    background: #f8fafc;
+    color: #64748b;
+    cursor: not-allowed;
+    border-color: #e2e8f0;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    font-family: "Roboto", sans-serif;
+}
+
+#cancelEdit, #cancelDelete, #cancelWindow {
+    background: #f1f5f9;
+    color: #475569;
+}
+#cancelEdit:hover, #cancelDelete:hover, #cancelWindow:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+#saveEdit, #saveWindow {
+    background: #10b981;
+    color: #ffffff;
+}
+#saveEdit:hover, #saveWindow:hover {
+    background: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+}
+
+#confirmDelete {
+    background: #ef4444;
+    color: #ffffff;
+}
+#confirmDelete:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
+}
