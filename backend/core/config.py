@@ -1,8 +1,9 @@
 from pydantic_settings import BaseSettings
+import os
 
 class Settings(BaseSettings):
 
-    SECRET_KEY: str = "your-super-secret-key-change-this-in-production-12345"
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "your-super-secret-key-change-this-in-production-12345")
 
     # Алгоритм шифрования для JWT
     ALGORITHM: str = "HS256"

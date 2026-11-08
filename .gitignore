@@ -1,0 +1,26 @@
+# Переменные окружения
+.env
+.env.local
+.env.*.local
+
+
+# Виртуальное окружение Python
+.venv/
+venv/
+env/
+
+# Скомпилированные файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Файлы базы данных
+*.db
+*.sqlite3
+
+# Папки настроек редакторов кода
+.vscode/
+.idea/
+
+# Логи
+*.log
