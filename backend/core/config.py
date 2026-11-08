@@ -3,7 +3,7 @@ import os
 
 class Settings(BaseSettings):
 
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "your-super-secret-key-change-this-in-production-12345")
+    SECRET_KEY: str
 
     # Алгоритм шифрования для JWT
     ALGORITHM: str = "HS256"
@@ -13,6 +13,11 @@ class Settings(BaseSettings):
     
     # Время жизни refresh токена (в днях)
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+
+    DATABASE_URL: str
+
+    class Config:
+        env_file = ".env"
 
 
 
