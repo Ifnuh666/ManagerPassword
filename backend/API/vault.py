@@ -6,6 +6,7 @@ from models.user import User
 from models.vault_item import VaultItem
 from schemas.vault import VaultItemCreate, VaultItemUpdate, VaultItemResponse
 from core.security import get_current_user
+from core.crypto import encrypt_password, decrypt_password
 
 
 router = APIRouter(prefix="/api/v1/vault", tags=["vault"])
@@ -29,7 +30,7 @@ async def create_vault_item(
         user_id = current_user.id,
         site_name = item_data.site_name,
         login = item_data.login,
-        encrypted_password = item_data.encrypted_password
+        encrypted_password = encrypt_password(item_data.encrypted_password)
     )
 
     # Добавляем объект в сессию
@@ -69,6 +70,8 @@ async def get_vault_item_total(
     )
 
     items = result.scalars().all()
+    for item in items:
+        item.encrypted_password = decrypt_password(item.encrypted_password)
     return items
 
 # Получение конкретной записи из хранилища по ее id 
@@ -152,13 +155,15 @@ async def update_vault_item(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Запись не найдена или у вас нет прав на её изменение"
         )
-    
     update_data = user_data.model_dump(exclude_unset=True) # Обновляем записи, которые явно указали
 
     # Проходим циклом по словарю
     for key, value in update_data.items():
         # setattr - метод динамического обновления данных
         setattr(item, key, value)
+
+    if "encrypted_password" in update_data:
+        item.encrypted_password = encrypt_password(update_data["encrypted_password"])
     
     await db.commit()
     await db.refresh(item)

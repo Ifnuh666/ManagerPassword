@@ -8,6 +8,9 @@ class Settings(BaseSettings):
     # Алгоритм шифрования для JWT
     ALGORITHM: str = "HS256"
 
+    # Переменная для шифрования паролей
+    ENCRYPTION_KEY: str
+
     # Время жизни токена доступа (в минутах)
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     

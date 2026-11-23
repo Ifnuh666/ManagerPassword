@@ -1,3 +1,16 @@
+function generatePassword(length = 16){
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+
+    let password = "";
+
+    for (let i = 0; i < 25; i++){
+        let index = Math.floor(Math.random() * chars.length)
+        password += chars[index];
+    }
+
+    return password;
+}
+
 document.addEventListener('DOMContentLoaded', function(){
 
     const post_password = document.getElementById('post_password');
@@ -9,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const passwordInput = document.getElementById('password');
 
     const add_password_btn = document.getElementById('add_password_btn');
+
+    const generateBtn = document.getElementById('generate_password');
 
     if (!post_password) return;
 
@@ -76,4 +91,9 @@ document.addEventListener('DOMContentLoaded', function(){
             add_password_btn.textContent = 'Добавить пароль';
         }
     })
+
+    generateBtn.addEventListener('click', function(){
+        const newPassword = generatePassword(15);
+        password.value = newPassword
+    });
 })

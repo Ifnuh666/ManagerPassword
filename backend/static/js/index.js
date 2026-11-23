@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. ПРОВЕРКА ТОКЕНА
+    // 1. ПРОВЕРКА ТОКЕНА. Тут я проверяю авторизован человек или нет, т.е. елси токен хранится во внтутреннем хранилище, то все ок, если нет, его переносит на страницу авторизации
     const token = localStorage.getItem('authToken');
     if (!token) {
         window.location.href = '/auth';
         return;
     }
 
-    // Логика модального окна для редактирования
+    // Массив для хранения всех паролей
+    let allVaultItems = [];
+
+    // Переменные для модального окна редактирования
     const editModal = document.getElementById('editModal');
     const editForm = document.getElementById('editForm');
     const cancelEditBtn = document.getElementById('cancelEdit');
@@ -63,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(errorData.detail || 'Ошибка при сохранении');
             }
 
-            alert('✅ Запись успешно обновлена!');
+            alert('Запись успешно обновлена!');
             closeEditModal();
             
 
@@ -71,15 +74,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } catch (error) {
             console.error('Ошибка обновления:', error);
-            alert('❌ Не удалось сохранить изменения: ' + error.message);
+            alert('Не удалось сохранить изменения: ' + error.message);
         }
     });
 
-    // Логика модального окна для удаления
+    // Переменные для модального окна удаления
     const delModal = document.getElementById('delModal');
     const delForm = document.getElementById('delForm');
     const cancelDeleteBtn = document.getElementById('cancelDelete'); // Уникальный ID
 
+    // Функция для открытия модального окна удаления
     window.openDeleteModal = function(id, site, login, password) {
         document.getElementById('delItemId').value = id;
         document.getElementById('delSiteName').value = site;
@@ -88,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         delModal.style.display = 'flex';
     };
 
+    // Функция для закрытия модального окна удаления
     function closeDeleteModal() {
         delModal.style.display = 'none';
         delForm.reset();
@@ -120,13 +125,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(errorData.detail || 'Ошибка при удалении');
             }
 
-            alert('✅ Запись успешно удалена!');
+            alert('Запись успешно удалена!');
             closeDeleteModal();
             loadVaultItems(); // Перерисовываем список
 
         } catch (error) {
             console.error('Ошибка удаления:', error);
-            alert('❌ Не удалось удалить: ' + error.message);
+            alert('Не удалось удалить: ' + error.message);
         }
     });
 
@@ -136,8 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('modal');
     const addPassword = document.getElementById('add_password');
     const cancelWindow = document.getElementById('cancelWindow');
-
-    // Функция отображения карточек
 
     // Переменная для хранения знаечния из выпадающего списка
     const sortType = document.getElementById('password').value; 
@@ -163,20 +166,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const data = await response.json();
-            const vaultList = document.getElementById('vault-list');
+            allVaultItems = data;
+            renderCards(allVaultItems);
+
+        } catch (error) {
+            console.error('Ошибка:', error.message || error);
+            alert(error.message);
+        }
+    }
+
+    function renderCards(items){
+        const vaultList = document.getElementById('vault-list');
 
             vaultList.style.display = 'flex';
             vaultList.style.flexDirection = 'column';
             vaultList.style.gap = '15px';
             vaultList.innerHTML = '';
 
-            if (data.length === 0) {
+            if (items.length === 0) {
                 vaultList.innerHTML = '<p style="text-align: center; color: #666; margin-top: 20px;">У вас пока нет сохранённых записей. Нажмите "Добавить пароль".</p>';
                 return;
             }
 
             // Отрисовка карточек
-            data.forEach(item => {
+            items.forEach(item => {
                 const dateAdded = item.created_at 
                     ? new Date(item.created_at).toLocaleDateString('ru-RU') 
                     : 'Дата неизвестна';
@@ -231,21 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     const textToCopy = this.getAttribute('data-copy');
                     navigator.clipboard.writeText(textToCopy)
                         .then(() => {
-                            alert('✅ Текст успешно скопирован!');
+                            alert('Текст успешно скопирован!');
                         })
                         .catch(err => {
                             console.error('Ошибка копирования:', err);
-                            alert('❌ Не удалось скопировать текст');
+                            alert('Не удалось скопировать текст');
                         }
                     );
                 });
             });
-
-        } catch (error) {
-            console.error('Ошибка:', error.message || error);
-            alert(error.message);
-        }
-    }
+    }   
 
     const sortSelect = document.getElementById('password');
     sortSelect.addEventListener('change', () => {
@@ -314,5 +322,26 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
+    }
+
+    // ЛОГИКА ПОИСКА
+    const searchInput = document.getElementById('search-input');
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            // Получаем текст и переводим в нижний регистр
+            const query = this.value.toLowerCase().trim();
+            
+            if (query === '') {
+                renderCards(allVaultItems);
+            } 
+            else {
+                const filteredItems = allVaultItems.filter(item => {
+                    return item.site_name.toLowerCase().includes(query) || 
+                           item.login.toLowerCase().includes(query);
+                });
+                renderCards(filteredItems);
+            }
+        });
     }
 });
